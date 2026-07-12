@@ -1,0 +1,45 @@
+# Datos descargados de Kaggle
+data/raw/
+data/processed/
+
+# Modelos entrenados
+outputs/models/
+*.pth
+*.pt
+*.ckpt
+*.zip
+
+# Checkpoints de entrenamiento
+outputs/checkpoints/
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Variables y credenciales
+.env
+kaggle.json
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+wandb/
+kaggle.json
