@@ -2,11 +2,12 @@
 import pandas as pd
 from torch.utils.data import Dataset
 from torchvision import transforms
+from src.config import TRAIN_CSV
 
 
 class Dataset_Train(Dataset):
 
-    def __init__(self, csv_path='data/raw/conquerx-b05-lec01-digit-recognizer/train.csv'):
+    def __init__(self, csv_path=TRAIN_CSV):
 
         self.df = pd.read_csv(csv_path)
         self.labels = self.df.iloc[:, 0].values
