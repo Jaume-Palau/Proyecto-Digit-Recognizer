@@ -1,4 +1,6 @@
+import torch
 import torch.nn as nn
+import torchinfo
 from src.helper_functions import calc_dim
 
 class Model(nn.Module):
@@ -49,6 +51,7 @@ class Model(nn.Module):
             in_features=self.flattened_dim,
             out_features=128
         )
+        self.activation3 = nn.LeakyReLU()  # Doesn't change the output dimensions
 
         # Clasification Layer 2
         self.dense2 = nn.Linear(
@@ -56,8 +59,42 @@ class Model(nn.Module):
             out_features=self.num_classes
         )
 
-        
+    def forward(self, x):
+        # Convolutional Layers
+        x = self.conv1(x)
+        x = self.activation1(x)
+        x = self.maxpool1(x)
+
+        x = self.conv2(x)
+        x = self.activation2(x)
+        x = self.maxpool2(x)
+
+        # Fully Connected Layers
+        x = self.flatten(x)
+        x = self.dense1(x)
+        x = self.activation3(x)
+        x = self.dense2(x)
+
+        return x
+
+
+    def get_loss_function(self, **kwargs):
+        """Return the loss function used by this network"""
+        return self._loss_function(**kwargs)
+    
+
+    def show_summary(self):
+        """Show the model summary information."""
+        return torchinfo.summary(
+            self, 
+            input_size=(self.input_channels, self.input_height, self.input_width),
+            batch_dim=0,
+            device=torch.device("cuda" if torch.cuda.is_available() else "cpu").type,
+            verbose=0) 
+
 
 if __name__ == "__main__":
-    model = Model()
-    print(model)
+
+    # Test the model summary
+    temp_model = Model()
+    print(temp_model.show_summary())
