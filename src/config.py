@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import torch
+
 
 # Raíz del proyecto
 ROOT_DIR = Path(__file__).resolve().parents[1]
@@ -28,3 +30,20 @@ SUBMISSIONS_DIR = OUTPUTS_DIR / "submissions"
 SRC_DIR = ROOT_DIR / "src"
 NOTEBOOKS_DIR = ROOT_DIR / "notebooks"
 SCRIPTS_DIR = ROOT_DIR / "scripts"
+
+
+
+TRAIN_CONFIG = {
+    "name" : "modelo_prueba1",
+    "train_csv": "",
+    "checkpoint_dir": "",
+    "model_dir": "",
+    "pickle_dir": "",
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "val_split": 0.2,
+    "num_workers": 0,
+    "seed": 42,
+    "n_epochs": 10,
+    "device": "cuda" if torch.cuda.is_available() else "cpu",
+}
