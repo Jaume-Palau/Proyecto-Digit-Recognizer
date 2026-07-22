@@ -80,8 +80,13 @@ def train_model(model, config: dict,):
     PICKLE_DIR.mkdir(parents=True, exist_ok=True)
 
     checkpoint_path = CHECKPOINTS_DIR / config["name"] / "last_checkpoint.pth"
+    checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
+
     best_model_path = MODELS_DIR / config["name"] / "best_model.pth"
+    best_model_path.parent.mkdir(parents=True, exist_ok=True)
+
     history_path = PICKLE_DIR / config["name"] / "training_history.pkl"
+    history_path.parent.mkdir(parents=True, exist_ok=True)
 
     config["checkpoint_dir"] = str(checkpoint_path)
     config["model_dir"] = str(best_model_path)
