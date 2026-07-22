@@ -35,10 +35,11 @@ SCRIPTS_DIR = ROOT_DIR / "scripts"
 
 TRAIN_CONFIG = {
     "name" : "modelo_prueba1",
-    "train_csv": "",
-    "checkpoint_dir": "",
-    "model_dir": "",
-    "pickle_dir": "",
+    "train_csv": TRAIN_CSV,
+    "test_csv": TEST_CSV,
+    "checkpoint_dir": CHECKPOINTS_DIR/"modelo_prueba1",
+    "model_dir": MODELS_DIR/"modelo_prueba1",
+    "pickle_dir": PICKLE_DIR/"modelo_prueba1",
     "batch_size": 64,
     "learning_rate": 0.001,
     "val_split": 0.2,
