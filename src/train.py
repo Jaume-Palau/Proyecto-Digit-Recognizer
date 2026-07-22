@@ -261,4 +261,4 @@ def train_model(model, config: dict,):
 
 if __name__ == "__main__":
     
-    train_model(model=Model(), config=TRAIN_CONFIG)
+    history = train_model(model=Model(), config=TRAIN_CONFIG)
