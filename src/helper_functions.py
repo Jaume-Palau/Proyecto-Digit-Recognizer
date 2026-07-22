@@ -33,3 +33,24 @@ def calc_dim(height:int, width:int, conv_layer:torch.nn):
     output_width = int( (width + 2*padding_w - dilation_w*(kernel_w-1) - 1)/stride_w +1 )
     
     return (output_height, output_width)
+
+
+def set_seed(seed: int) -> None:
+    """
+    Fix random seeds for reproducibility.
+
+    Args:
+        seed (int): Seed value used by Python, NumPy and PyTorch.
+    """
+    import random
+    import numpy as np
+    import torch
+
+    random.seed(seed)
+    np.random.seed(seed)
+
+    torch.manual_seed(seed)
+
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)
