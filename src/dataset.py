@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np  
 from torch.utils.data import Dataset
 from torchvision import transforms
-from src.config import TRAIN_CSV
+from src.config import TEST_CSV, TRAIN_CSV
 
 
 class Dataset_Train(Dataset):
@@ -31,6 +31,28 @@ class Dataset_Train(Dataset):
         data = transforms.ToTensor()(data)
         
         return data, label
+
+
+
+class Dataset_Test(Dataset):
+
+    def __init__(self, csv_path=TEST_CSV):
+        self.df = pd.read_csv(csv_path)
+
+    def __len__(self):
+        return len(self.df)
+
+    def __getitem__(self, idx):
+        row = self.df.iloc[idx]
+
+        data = (
+            row.to_numpy(dtype=np.float32)
+            .reshape(28, 28)
+        )
+
+        data = transforms.ToTensor()(data)
+
+        return data
 
 
 if __name__ == "__main__":
