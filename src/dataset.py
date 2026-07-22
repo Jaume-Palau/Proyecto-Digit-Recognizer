@@ -1,5 +1,6 @@
 
 import pandas as pd
+import numpy as np  
 from torch.utils.data import Dataset
 from torchvision import transforms
 from src.config import TRAIN_CSV
@@ -26,7 +27,7 @@ class Dataset_Train(Dataset):
         """
         row = self.df.iloc[idx]
         label = row.iloc[0]
-        data = row.iloc[1:].values.reshape(28, 28)
+        data = row.iloc[1:].values.reshape(28, 28).astype(np.float32)
         data = transforms.ToTensor()(data)
         
         return data, label
